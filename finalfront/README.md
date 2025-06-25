@@ -1,97 +1,78 @@
-# Sistema de Gestão de Cursos
+# G5 Educação - Plataforma de Cursos Online
 
-Sistema simples de gestão de cursos desenvolvido como trabalho de faculdade usando React e JSON Server.
+## sobre o projeto
 
-## Funcionalidades
+esse é um projeto de uma plataforma de cursos online chamada G5 Educação. é tipo um netflix de cursos, sabe? tem admin que gerencia tudo e usuários que fazem os cursos.
 
-- ✅ Sistema de login com autenticação
-- ✅ CRUD completo de usuários (5 campos: nome, email, senha, tipo, status)
-- ✅ CRUD completo de cursos/serviços (5 campos: nome, descrição, categoria, preço, status)
-- ✅ Layout responsivo e agradável
-- ✅ Navbar e Footer fixos
-- ✅ Navegação SPA com React Router
-- ✅ Persistência de dados com JSON Server
-- ✅ Tratamento de exceções nas requisições HTTP
+## como funciona
 
-## Como Executar
+- **admin**: pode ver estatísticas, gerenciar usuários e cursos
+- **usuário normal**: só pode ver os cursos e usar o fórum pra fazer perguntas
 
-### 1. Instalar dependências
+## estrutura dos arquivos
+
+### componentes principais
+
+- `App.jsx` - componente principal, controla as rotas e autenticação
+- `Login.jsx` - tela de login onde todo mundo entra
+- `Navbar.jsx` - menu de navegação que fica no topo
+- `Cursos.jsx` - página onde os admin gerenciam cursos e usuários veem eles
+- `Users.jsx` - página só pra admin gerenciar usuários
+- `Forum.jsx` - fórum onde usuários fazem perguntas
+- `Inicio.jsx` - dashboard do admin com estatísticas
+- `Footer.jsx` - rodapé com créditos
+
+### dados
+
+- `db.json` - banco de dados fake com usuários, cursos e perguntas
+- `package.json` - configurações do projeto e dependências
+
+## como rodar
+
+### instalar dependências
 
 ```bash
 npm install
 ```
 
-### 2. Iniciar o JSON Server (em um terminal)
+### rodar o servidor fake (banco de dados)
 
 ```bash
 npm run server
 ```
 
-O servidor será iniciado em `http://localhost:3001`
-
-### 3. Iniciar o React (em outro terminal)
+### rodar a aplicação
 
 ```bash
 npm run dev
 ```
 
-A aplicação será iniciada em `http://localhost:5173`
+## usuários de teste
 
-## Usuários para Teste
+- **admin**: admin@admin.com / admin123
+- **usuário**: Gabriel@email.com / gabriel123
 
-- **Administrador**: admin@admin.com / 123456
-- **Usuário**: joao@email.com / 123456
+## tecnologias usadas
 
-## Estrutura do Projeto
+- React 19
+- React Router (pra navegação)
+- Vite (pra build)
+- JSON Server (banco fake)
+- CSS puro (sem framework)
 
-```
-src/
-├── components/
-│   ├── Login.jsx          # Tela de login
-│   ├── Login.css
-│   ├── Navbar.jsx         # Navegação principal
-│   ├── Navbar.css
-│   ├── Footer.jsx         # Rodapé fixo
-│   ├── Footer.css
-│   ├── Inicio.jsx         # Dashboard inicial
-│   ├── Inicio.css
-│   ├── Users.jsx          # CRUD de usuários
-│   ├── Users.css
-│   ├── Cursos.jsx         # CRUD de cursos
-│   └── Cursos.css
-├── App.jsx                # Configuração de rotas
-├── App.css
-└── main.jsx
-```
+## funcionalidades
 
-## Tecnologias Utilizadas
+- ✅ login/logout
+- ✅ proteção de rotas
+- ✅ gerenciamento de usuários (admin)
+- ✅ gerenciamento de cursos (admin)
+- ✅ visualização de cursos (usuários)
+- ✅ fórum de perguntas (usuários)
+- ✅ dashboard com estatísticas (admin)
 
-- **React 19** - Framework JavaScript
-- **React Router** - Navegação SPA
-- **JSON Server** - API REST simulada
-- **CSS Puro** - Estilização responsiva
-- **Vite** - Build tool
+## observações
 
-## Características do Sistema
-
-- **Simples**: Interface limpa e intuitiva
-- **Responsivo**: Funciona em desktop e mobile
-- **Funcional**: CRUD completo para usuários e cursos
-- **Seguro**: Autenticação básica com localStorage
-- **Escalável**: Estrutura organizada para futuras expansões
-
-## Endpoints da API
-
-- `GET /usuarios` - Listar usuários
-- `POST /usuarios` - Criar usuário
-- `PUT /usuarios/:id` - Atualizar usuário
-- `DELETE /usuarios/:id` - Excluir usuário
-
-- `GET /servicos` - Listar cursos
-- `POST /servicos` - Criar curso
-- `PUT /servicos/:id` - Atualizar curso
-- `DELETE /servicos/:id` - Excluir curso
-
-## Desenvolvido por
-
-Estudante de faculdade - Trabalho de desenvolvimento web
+- o banco é fake, então os dados não ficam salvos quando reinicia
+- não tem validação muito robusta, é mais pra demonstração
+- o design é simples mas funcional
+- tudo comentado com linguagem informal pra facilitar o entendimento

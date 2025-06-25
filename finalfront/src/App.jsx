@@ -14,10 +14,14 @@ import Footer from "./components/Footer";
 import Forum from "./components/Forum";
 import "./App.css";
 
+// componente principal da aplicação - é tipo o chefe de tudo aqui
 function App() {
+  // guarda se tem alguém logado e quem é essa pessoa
   const [usuarioLogado, setUsuarioLogado] = useState(null);
+  // controla se tá carregando ainda ou não
   const [carregando, setCarregando] = useState(true);
 
+  // roda quando a página carrega, pra ver se tem alguém logado salvo no navegador
   useEffect(() => {
     const usuario = localStorage.getItem("usuarioLogado");
     if (usuario) {
@@ -26,6 +30,7 @@ function App() {
     setCarregando(false);
   }, []);
 
+  // componente que protege as rotas - só deixa entrar quem tá logado
   const ProtectedRoute = ({ children }) => {
     if (carregando) {
       return <div className="loading-app">Carregando...</div>;
@@ -42,7 +47,7 @@ function App() {
     );
   };
 
-  // Rota protegida apenas para admin
+  // rota protegida só pra admin - os chefões da aplicação
   const AdminRoute = ({ children }) => {
     if (carregando) {
       return <div className="loading-app">Carregando...</div>;
@@ -59,6 +64,7 @@ function App() {
     );
   };
 
+  // se ainda tá carregando, mostra uma tela de loading
   if (carregando) {
     return <div className="loading-app">Carregando...</div>;
   }
@@ -67,6 +73,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          {/* rota principal - redireciona baseado no tipo de usuário */}
           <Route
             path="/"
             element={
@@ -81,6 +88,7 @@ function App() {
               )
             }
           />
+          {/* página inicial só pra admin */}
           <Route
             path="/inicio"
             element={
@@ -89,6 +97,7 @@ function App() {
               </AdminRoute>
             }
           />
+          {/* gerenciamento de usuários só pra admin */}
           <Route
             path="/usuarios"
             element={
@@ -97,6 +106,7 @@ function App() {
               </AdminRoute>
             }
           />
+          {/* página de cursos pra todo mundo logado */}
           <Route
             path="/cursos"
             element={
@@ -105,6 +115,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          {/* fórum pra todo mundo logado */}
           <Route
             path="/forum"
             element={

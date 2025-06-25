@@ -1,7 +1,7 @@
 {
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "admin",
       "email": "admin@admin.com",
       "senha": "admin123",
@@ -9,17 +9,33 @@
       "status": "ativo"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Gabriel",
       "email": "Gabriel@email.com",
       "senha": "gabriel123",
       "tipo": "usuario",
       "status": "ativo"
+    },
+    {
+      "nome": "Luan",
+      "email": "luan@gmail.com",
+      "senha": "luan",
+      "tipo": "usuario",
+      "status": "ativo",
+      "id": "7234"
+    },
+    {
+      "id": "5ee4",
+      "nome": "admin",
+      "email": "admin@admin",
+      "senha": "admin",
+      "tipo": "admin",
+      "status": "ativo"
     }
   ],
   "servicos": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Curso de React",
       "descricao": "Aprenda React do zero ao avançado",
       "categoria": "Programação",
@@ -27,7 +43,7 @@
       "status": "ativo"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Curso de JavaScript",
       "descricao": "Fundamentos de JavaScript moderno",
       "categoria": "Programação",
@@ -35,7 +51,7 @@
       "status": "ativo"
     },
     {
-      "id": 3,
+      "id": "3",
       "nome": "Curso de CSS",
       "descricao": "Estilização web com CSS",
       "categoria": "Design",
@@ -43,7 +59,7 @@
       "status": "ativo"
     },
     {
-      "id": 4,
+      "id": "4",
       "nome": "Curso de Python",
       "descricao": "Principios de Python",
       "categoria": "Programação",

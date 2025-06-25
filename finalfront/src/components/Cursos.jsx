@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import "./Cursos.css";
 
+// página de cursos - onde os admin gerenciam os cursos e os usuários veem eles
 function Cursos() {
+  // lista de todos os cursos
   const [cursos, setCursos] = useState([]);
+  // controla se tá carregando os cursos ou não
   const [carregando, setCarregando] = useState(true);
+  // guarda se deu algum erro
   const [erro, setErro] = useState("");
+  // controla se mostra o formulário de adicionar/editar curso
   const [mostrarForm, setMostrarForm] = useState(false);
+  // guarda qual curso tá sendo editado (se tiver algum)
   const [editando, setEditando] = useState(null);
+  // dados do formulário - nome, descrição, categoria, preço e status
   const [formData, setFormData] = useState({
     nome: "",
     descricao: "",
@@ -15,16 +22,19 @@ function Cursos() {
     status: "ativo",
   });
 
-  // Pega o usuário logado do localStorage
+  // pega o usuário logado do navegador
   const usuarioLogado = JSON.parse(
     localStorage.getItem("usuarioLogado") || "{}"
   );
+  // verifica se é admin ou não
   const isAdmin = usuarioLogado.tipo === "admin";
 
+  // roda quando a página carrega, pra buscar os cursos
   useEffect(() => {
     carregarCursos();
   }, []);
 
+  // função que busca todos os cursos do servidor
   const carregarCursos = async () => {
     try {
       setCarregando(true);
@@ -39,6 +49,7 @@ function Cursos() {
     }
   };
 
+  // limpa o formulário e esconde ele
   const limparForm = () => {
     setFormData({
       nome: "",
@@ -51,6 +62,7 @@ function Cursos() {
     setMostrarForm(false);
   };
 
+  // função que salva o curso (criar novo ou atualizar existente)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -61,7 +73,7 @@ function Cursos() {
       };
 
       if (editando) {
-        // Atualizar
+        // se tá editando, atualiza o curso existente
         const response = await fetch(
           `http://localhost:3001/servicos/${editando.id}`,
           {
@@ -78,7 +90,7 @@ function Cursos() {
           limparForm();
         }
       } else {
-        // Criar
+        // se não tá editando, cria um curso novo
         const response = await fetch("http://localhost:3001/servicos", {
           method: "POST",
           headers: {
@@ -98,6 +110,7 @@ function Cursos() {
     }
   };
 
+  // função que prepara o formulário pra editar um curso
   const handleEditar = (curso) => {
     setFormData({
       nome: curso.nome,
@@ -110,6 +123,7 @@ function Cursos() {
     setMostrarForm(true);
   };
 
+  // função que exclui um curso
   const handleExcluir = async (id) => {
     if (window.confirm("Tem certeza que deseja excluir este curso?")) {
       try {
@@ -127,6 +141,7 @@ function Cursos() {
     }
   };
 
+  // função que formata o preço em reais
   const formatarPreco = (preco) => {
     return new Intl.NumberFormat("pt-BR", {
       style: "currency",
@@ -134,6 +149,7 @@ function Cursos() {
     }).format(preco);
   };
 
+  // se tá carregando, mostra uma tela de loading
   if (carregando) {
     return (
       <div className="cursos-container">
@@ -145,8 +161,10 @@ function Cursos() {
   return (
     <div className="cursos-container">
       <div className="cursos-content">
+        {/* cabeçalho da página com título e botão de adicionar */}
         <div className="cursos-header">
           <h1>Gerenciar Cursos</h1>
+          {/* botão só aparece pra admin */}
           {isAdmin && (
             <button
               onClick={() => setMostrarForm(true)}
@@ -157,8 +175,10 @@ function Cursos() {
           )}
         </div>
 
+        {/* mostra erro se tiver algum */}
         {erro && <div className="erro-mensagem">{erro}</div>}
 
+        {/* formulário de adicionar/editar curso - só aparece pra admin */}
         {mostrarForm && isAdmin && (
           <div className="form-overlay">
             <div className="form-card">
@@ -237,6 +257,7 @@ function Cursos() {
                   </select>
                 </div>
 
+                {/* botões do formulário */}
                 <div className="form-buttons">
                   <button type="submit" className="btn-salvar">
                     {editando ? "Atualizar" : "Salvar"}
@@ -254,14 +275,17 @@ function Cursos() {
           </div>
         )}
 
+        {/* grid com todos os cursos */}
         <div className="cursos-grid">
           {cursos.map((curso) => (
             <div key={curso.id} className="curso-card">
+              {/* cabeçalho do card com nome e status */}
               <div className="curso-header">
                 <h3>{curso.nome}</h3>
                 <span className={`status ${curso.status}`}>{curso.status}</span>
               </div>
 
+              {/* informações do curso */}
               <div className="curso-info">
                 <p className="descricao">{curso.descricao}</p>
                 <div className="categoria">
@@ -272,6 +296,7 @@ function Cursos() {
                 </div>
               </div>
 
+              {/* botões de editar e excluir só pra admin */}
               {isAdmin && (
                 <div className="curso-acoes">
                   <button
@@ -292,9 +317,11 @@ function Cursos() {
           ))}
         </div>
 
+        {/* mensagem quando não tem cursos cadastrados */}
         {cursos.length === 0 && !carregando && (
           <div className="sem-cursos">
             <p>Nenhum curso cadastrado ainda.</p>
+            {/* botão só aparece pra admin */}
             {isAdmin && (
               <button
                 onClick={() => setMostrarForm(true)}

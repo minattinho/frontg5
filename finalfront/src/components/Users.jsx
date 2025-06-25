@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import "./Users.css";
 
+// página de gerenciamento de usuários - só pra admin ver e mexer nos usuários
 function Users() {
+  // lista de todos os usuários
   const [usuarios, setUsuarios] = useState([]);
+  // controla se tá carregando os usuários ou não
   const [carregando, setCarregando] = useState(true);
+  // guarda se deu algum erro
   const [erro, setErro] = useState("");
+  // controla se mostra o formulário de adicionar/editar usuário
   const [mostrarForm, setMostrarForm] = useState(false);
+  // guarda qual usuário tá sendo editado (se tiver algum)
   const [editando, setEditando] = useState(null);
+  // dados do formulário - nome, email, senha, tipo e status
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -15,10 +22,12 @@ function Users() {
     status: "ativo",
   });
 
+  // roda quando a página carrega, pra buscar os usuários
   useEffect(() => {
     carregarUsuarios();
   }, []);
 
+  // função que busca todos os usuários do servidor
   const carregarUsuarios = async () => {
     try {
       setCarregando(true);
@@ -33,6 +42,7 @@ function Users() {
     }
   };
 
+  // limpa o formulário e esconde ele
   const limparForm = () => {
     setFormData({
       nome: "",
@@ -45,12 +55,13 @@ function Users() {
     setMostrarForm(false);
   };
 
+  // função que salva o usuário (criar novo ou atualizar existente)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       if (editando) {
-        // Atualizar
+        // se tá editando, atualiza o usuário existente
         const response = await fetch(
           `http://localhost:3001/usuarios/${editando.id}`,
           {
@@ -67,7 +78,7 @@ function Users() {
           limparForm();
         }
       } else {
-        // Criar
+        // se não tá editando, cria um usuário novo
         const response = await fetch("http://localhost:3001/usuarios", {
           method: "POST",
           headers: {
@@ -87,6 +98,7 @@ function Users() {
     }
   };
 
+  // função que prepara o formulário pra editar um usuário
   const handleEditar = (usuario) => {
     setFormData({
       nome: usuario.nome,
@@ -99,6 +111,7 @@ function Users() {
     setMostrarForm(true);
   };
 
+  // função que exclui um usuário
   const handleExcluir = async (id) => {
     if (window.confirm("Tem certeza que deseja excluir este usuário?")) {
       try {
@@ -116,6 +129,7 @@ function Users() {
     }
   };
 
+  // se tá carregando, mostra uma tela de loading
   if (carregando) {
     return (
       <div className="users-container">
@@ -127,6 +141,7 @@ function Users() {
   return (
     <div className="users-container">
       <div className="users-content">
+        {/* cabeçalho da página com título e botão de adicionar */}
         <div className="users-header">
           <h1>Gerenciar Usuários</h1>
           <button
@@ -137,8 +152,10 @@ function Users() {
           </button>
         </div>
 
+        {/* mostra erro se tiver algum */}
         {erro && <div className="erro-mensagem">{erro}</div>}
 
+        {/* formulário de adicionar/editar usuário */}
         {mostrarForm && (
           <div className="form-overlay">
             <div className="form-card">
@@ -207,6 +224,7 @@ function Users() {
                   </select>
                 </div>
 
+                {/* botões do formulário */}
                 <div className="form-buttons">
                   <button type="submit" className="btn-salvar">
                     {editando ? "Atualizar" : "Salvar"}
@@ -224,6 +242,7 @@ function Users() {
           </div>
         )}
 
+        {/* tabela com todos os usuários */}
         <div className="users-table">
           <table>
             <thead>
@@ -253,6 +272,7 @@ function Users() {
                     </span>
                   </td>
                   <td>
+                    {/* botões de editar e excluir */}
                     <button
                       onClick={() => handleEditar(usuario)}
                       className="btn-editar"
