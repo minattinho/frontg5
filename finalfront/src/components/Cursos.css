@@ -1,0 +1,353 @@
+.cursos-container {
+  padding: 80px 20px 100px;
+  min-height: 100vh;
+  background: #f4f8fb;
+}
+
+.cursos-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cursos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.cursos-header h1 {
+  color: #1a237e;
+  margin: 0;
+}
+
+.btn-adicionar {
+  background: #1a237e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.btn-adicionar:hover {
+  background: #0d133d;
+}
+
+.erro-mensagem {
+  background: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ffcdd2;
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 35, 126, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.form-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.form-card h2 {
+  margin-bottom: 20px;
+  color: #1a237e;
+}
+
+.curso-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #1a237e;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px;
+  border: 1.5px solid #cfd8dc;
+  border-radius: 5px;
+  font-size: 16px;
+  background: #fff;
+  color: #1a237e;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #1a237e;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-salvar {
+  background: #1a237e;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1;
+}
+
+.btn-salvar:hover {
+  background: #0d133d;
+}
+
+.btn-cancelar {
+  background: #b0bec5;
+  color: #1a237e;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1;
+}
+
+.btn-cancelar:hover {
+  background: #90a4ae;
+}
+
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.curso-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(26, 35, 126, 0.07);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.curso-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(26, 35, 126, 0.12);
+}
+
+.curso-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.curso-header h3 {
+  margin: 0;
+  color: #1a237e;
+  font-size: 18px;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #b0bec5;
+  color: #1a237e;
+}
+
+.status.ativo {
+  background: #e3eafc;
+  color: #1a237e;
+}
+
+.status.inativo {
+  background: #e53935;
+  color: #fff;
+}
+
+.curso-info {
+  margin-bottom: 20px;
+}
+
+.descricao {
+  color: #0d133d;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.categoria,
+.preco {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #1a237e;
+}
+
+.preco {
+  font-weight: bold;
+  color: #0d133d;
+  font-size: 16px;
+}
+
+.curso-acoes {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-editar,
+.btn-excluir {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  flex: 1;
+  transition: background 0.3s;
+}
+
+.btn-editar {
+  background: #1976d2;
+  color: #fff;
+}
+
+.btn-editar:hover {
+  background: #0d133d;
+}
+
+.btn-excluir {
+  background: #e53935;
+  color: #fff;
+}
+
+.btn-excluir:hover {
+  background: #b71c1c;
+}
+
+.sem-cursos {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(26, 35, 126, 0.07);
+}
+
+.sem-cursos p {
+  color: #0d133d;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 100px 20px;
+  font-size: 18px;
+  color: #1a237e;
+}
+
+@media (max-width: 768px) {
+  .cursos-container {
+    padding: 70px 15px 90px;
+  }
+  .cursos-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  .form-card {
+    padding: 20px;
+    margin: 20px;
+  }
+  .form-buttons {
+    flex-direction: column;
+  }
+  .cursos-grid {
+    grid-template-columns: 1fr;
+  }
+  .curso-card {
+    padding: 15px;
+  }
+  .curso-header h3 {
+    font-size: 16px;
+  }
+  .curso-acoes {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 900px) {
+  .cursos-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .curso-card {
+    padding: 12px;
+    font-size: 14px;
+  }
+  .cursos-header h1 {
+    font-size: 20px;
+  }
+  .btn-adicionar {
+    font-size: 14px;
+    padding: 8px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .cursos-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .form-card {
+    padding: 10px;
+    margin: 5px;
+  }
+  .form-buttons {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .btn-salvar,
+  .btn-cancelar {
+    font-size: 13px;
+    padding: 8px 0;
+  }
+}

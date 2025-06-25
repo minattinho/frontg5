@@ -1,0 +1,60 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "admin",
+      "email": "admin@admin.com",
+      "senha": "admin123",
+      "tipo": "admin",
+      "status": "ativo"
+    },
+    {
+      "id": 2,
+      "nome": "Gabriel",
+      "email": "Gabriel@email.com",
+      "senha": "gabriel123",
+      "tipo": "usuario",
+      "status": "ativo"
+    }
+  ],
+  "servicos": [
+    {
+      "id": 1,
+      "nome": "Curso de React",
+      "descricao": "Aprenda React do zero ao avançado",
+      "categoria": "Programação",
+      "preco": 299.99,
+      "status": "ativo"
+    },
+    {
+      "id": 2,
+      "nome": "Curso de JavaScript",
+      "descricao": "Fundamentos de JavaScript moderno",
+      "categoria": "Programação",
+      "preco": 199.99,
+      "status": "ativo"
+    },
+    {
+      "id": 3,
+      "nome": "Curso de CSS",
+      "descricao": "Estilização web com CSS",
+      "categoria": "Design",
+      "preco": 149.99,
+      "status": "ativo"
+    },
+    {
+      "id": 4,
+      "nome": "Curso de Python",
+      "descricao": "Principios de Python",
+      "categoria": "Programação",
+      "preco": 229.99,
+      "status": "ativo"
+    }
+  ],
+  "perguntas": [
+    {
+      "id": "Como inicar no react?",
+      "texto": "Falando sobre o React, o que é o React?"
+    }
+  ]
+}
